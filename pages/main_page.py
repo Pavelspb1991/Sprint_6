@@ -1,10 +1,11 @@
 from pages.base_page import BasePage
 from components.components import WebElement
+from urls import Urls
 
 
 class MainPage(BasePage):
     def __init__(self, driver):
-        self.base_url = "https://qa-scooter.praktikum-services.ru/"
+        self.base_url = Urls.BASE_URL
         super().__init__(driver, self.base_url)
         self.main_page_header = WebElement(driver, '//div[@class="Home_Header__iJKdX"]', 'xpath')
         self.question_list = WebElement(driver, '//div[contains(@class, "Home_FAQ")]', 'xpath')
@@ -34,4 +35,7 @@ class MainPage(BasePage):
             7: WebElement(driver, '//div[@id="accordion__panel-6"]', 'xpath'),
             8: WebElement(driver, '//div[@id="accordion__panel-7"]', 'xpath')
         }
+
+    def switch_to_new_window(self):
+        self.driver.switch_to.window(self.driver.window_handles[1])
 
